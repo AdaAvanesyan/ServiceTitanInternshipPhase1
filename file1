@@ -1,0 +1,24 @@
+import numpy as np
+import seaborn as sns
+import pandas as pd
+from matplotlib.colors import ListedColormap
+import matplotlib.pyplot as plt
+from sklearn.svm import SVC
+from sklearn import datasets
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import StandardScaler
+from sklearn.linear_model import LogisticRegression
+from sklearn.metrics import accuracy_score
+from sklearn.decomposition import PCA
+from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score, confusion_matrix
+df = pd.read_csv('C:/Users/Adrine Avanesyan/Downloads/Bank-Personal-Loan-modelling.csv')
+#print(df.sample(10))
+
+
+# Data preprocessing
+df['CCAvg'] = df['CCAvg'].str.replace('/', '').astype(float) / 100 * 12
+df = df.drop(['Experience', 'ID', 'ZIP Code'], axis=1)
+
+# Separate features and target
+X = df.drop('Personal Loan', axis=1)
+y = df['Personal Loan']
